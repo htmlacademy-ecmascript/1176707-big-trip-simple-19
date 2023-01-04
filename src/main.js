@@ -1,8 +1,8 @@
-import NewForm from './view/creationForm.js';
-import SortView from './view/sorting.js';
-import FilterView from './view/filters.js';
-import EditForm from './view/editingForm.js';
-import PointShower from './view/routePoint.js';
+import NewForm from './view/creation-form-template.js';
+import SortViewer from './view/sorting-template.js';
+import FilterViewer from './view/filters-template.js';
+import FormEditor from './view/edit-form-template.js';
+import PointsList from './view/points-list.js';
 import {render} from './render.js';
 
 const mainElement = document.querySelector('.page-body');
@@ -12,9 +12,7 @@ const filtersElement = formElement.querySelector('.trip-controls__filters');
 
 
 render(new NewForm(), formElement);
-render(new SortView(), headerElement);
-render(new EditForm(), headerElement);
-render(new FilterView(), filtersElement);
-for(let i = 0; i < 3; i++) {
-  render(new PointShower(), headerElement);
-}
+render(new SortViewer(), headerElement);
+render(new FormEditor(), headerElement);
+render(new FilterViewer(), filtersElement);
+render(new PointsList(), headerElement);
