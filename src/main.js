@@ -1,9 +1,9 @@
-import NewForm from './view/new-form.js';
-import SortViewer from './view/sort-viewer.js';
-import FilterViewer from './view/filter-viewer.js';
+import NewForm from './view/view-new-form.js';
+import SortViewer from './view/sort-view.js';
+import FilterViewer from './view/filter-view.js';
 import FormEditor from './view/form-editor.js';
-import PointsList from './view/points-list.js';
-import Point from './view/point.js';
+import PointsList from './view/view-points-list.js';
+import Point from './view/view-point.js';
 import {render} from './render.js';
 
 const mainElement = document.querySelector('.page-body');
