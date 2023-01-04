@@ -160,7 +160,7 @@ function createEditFormTemplate() {
   );
 }
 
-export default class EditForm {
+export default class FormEditor {
   getTemplate() {
     return createEditFormTemplate();
   }

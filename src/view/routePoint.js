@@ -294,7 +294,7 @@ function showRoutePoints() {
   );
 }
 
-export default class ShowPoint {
+export default class PointShower {
   getTemplate() {
     return showRoutePoints();
   }

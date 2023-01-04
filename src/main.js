@@ -2,7 +2,7 @@ import NewForm from './view/creationForm.js';
 import SortView from './view/sorting.js';
 import FilterView from './view/filters.js';
 import EditForm from './view/editingForm.js';
-import ShowPoint from './view/routePoint.js';
+import PointShower from './view/routePoint.js';
 import {render} from './render.js';
 
 const mainElement = document.querySelector('.page-body');
@@ -16,5 +16,5 @@ render(new SortView(), headerElement);
 render(new EditForm(), headerElement);
 render(new FilterView(), filtersElement);
 for(let i = 0; i < 3; i++) {
-  render(new ShowPoint(), headerElement);
+  render(new PointShower(), headerElement);
 }
