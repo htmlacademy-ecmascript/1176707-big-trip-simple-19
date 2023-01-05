@@ -4,9 +4,8 @@ import FilterView from './view/filter-view.js';
 import PointPresenter from './presenter/point-presenter.js';
 import {render} from './render.js';
 
-const mainElement = document.querySelector('.page-body');
-const formElement = mainElement.querySelector('.trip-main');
-const headerElement = mainElement.querySelector('.trip-events');
+const formElement = document.querySelector('.trip-main');
+const headerElement = document.querySelector('.trip-events');
 const filtersElement = formElement.querySelector('.trip-controls__filters');
 const pointPresenter = new PointPresenter({pointContainer: headerElement});
 
