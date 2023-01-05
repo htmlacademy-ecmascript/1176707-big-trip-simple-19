@@ -23,7 +23,7 @@ function createFilterTemplate() {
   );
 }
 
-export default class FilterViewer {
+export default class FilterView {
   getTemplate() {
     return createFilterTemplate();
   }

@@ -161,7 +161,7 @@ function createEditFormTemplate() {
   );
 }
 
-export default class FormEditor {
+export default class FormEditorView {
   getTemplate() {
     return createEditFormTemplate();
   }
