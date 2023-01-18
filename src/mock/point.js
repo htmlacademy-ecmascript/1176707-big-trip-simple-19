@@ -1,5 +1,5 @@
 import { getRandomArrayElement } from '../util.js';
-import { TYPE , COUNTRY , PRICE , OFFERS } from '../const.js';
+import { TYPE , COUNTRY , PRICE , OFFERS , IMAGES } from '../const.js';
 
 const mockPoints = [
   {
@@ -18,13 +18,14 @@ const mockPoints = [
       offer2: {
         description: `${getRandomArrayElement(OFFERS)}`,
         price:`${getRandomArrayElement(PRICE)}`,
-      }
+      },
+      image: `${getRandomArrayElement(IMAGES)}`
     },
   },
   {
     typePoint: `${getRandomArrayElement(TYPE)} ${getRandomArrayElement(COUNTRY)}`,
     dueDate: {
-      start: new Date('2019-03-18T8:30'),
+      start: new Date('2019-03-18T10:30'),
       end: new Date('2019-03-18T17:00'),
       number: new Date('2019-03-18')
     },
@@ -37,7 +38,8 @@ const mockPoints = [
       offer2: {
         description: `${getRandomArrayElement(OFFERS)}`,
         price:`${getRandomArrayElement(PRICE)}`,
-      }
+      },
+      image: `${getRandomArrayElement(IMAGES)}`
     },
   },
   {
@@ -56,7 +58,8 @@ const mockPoints = [
       offer2: {
         description: `${getRandomArrayElement(OFFERS)}`,
         price:`${getRandomArrayElement(PRICE)}`,
-      }
+      },
+      image: `${getRandomArrayElement(IMAGES)}`
     },
   },
   {
@@ -75,7 +78,8 @@ const mockPoints = [
       offer2: {
         description: `${getRandomArrayElement(OFFERS)}`,
         price:`${getRandomArrayElement(PRICE)}`,
-      }
+      },
+      image: `${getRandomArrayElement(IMAGES)}`
     },
   },
   {
@@ -94,7 +98,8 @@ const mockPoints = [
       offer2: {
         description: `${getRandomArrayElement(OFFERS)}`,
         price:`${getRandomArrayElement(PRICE)}`,
-      }
+      },
+      image: `${getRandomArrayElement(IMAGES)}`
     },
   },
 ];

@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 
-const DATE_FORMAT = 'DD-MM-YY HH:mm';
+const DATE_FORMAT = 'MMM D';
 const TIME_FORMAT = 'HH:mm';
 
 function getRandomArrayElement(items) {
@@ -15,10 +15,8 @@ function humanizePointTime(dueDate) {
   return dueDate ? dayjs(dueDate).format(TIME_FORMAT) : '';
 }
 
-function getRandomDate() {
-  const date = new Date();
-
-  date.setFullYear(Math.random(2000, 2500));
+function getRandomNumber(max) {
+  return Math.floor(Math.random() * max);
 }
 
-export {getRandomArrayElement, humanizePointDate, humanizePointTime};
+export {getRandomArrayElement, humanizePointDate, humanizePointTime, getRandomNumber};
