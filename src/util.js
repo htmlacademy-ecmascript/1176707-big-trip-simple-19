@@ -16,7 +16,11 @@ function humanizePointTime(dueDate) {
 }
 
 function getRandomNumber(max) {
-  return Math.floor(Math.random() * max);
+  return Math.floor(Math.random() * max + 1);
 }
 
-export {getRandomArrayElement, humanizePointDate, humanizePointTime, getRandomNumber};
+function getRandomDate() {
+  return `2022-03-${getRandomNumber(30)}T${getRandomNumber(23)}:${getRandomNumber(58)}`;
+}
+
+export {getRandomArrayElement, humanizePointDate, humanizePointTime, getRandomNumber , getRandomDate};

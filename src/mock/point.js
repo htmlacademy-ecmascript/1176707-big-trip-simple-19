@@ -1,108 +1,28 @@
-import { getRandomArrayElement } from '../util.js';
-import { TYPE , COUNTRY , PRICE , OFFERS , IMAGES } from '../const.js';
+import { getRandomArrayElement, getRandomNumber } from '../util.js';
+import { TYPE , COUNTRY , OFFERS, POINT_COUNTS } from '../const.js';
 
 const mockPoints = [
-  {
-    typePoint: `${getRandomArrayElement(TYPE)} ${getRandomArrayElement(COUNTRY)}`,
-    dueDate: {
-      start: new Date('2019-03-18T10:30'),
-      end: new Date('2019-03-18T11:00'),
-      number: new Date('2019-03-18')
-    },
-    price: `${getRandomArrayElement(PRICE)}`,
-    offers: {
-      offer1: {
-        description: `${getRandomArrayElement(OFFERS)}`,
-        price:`${getRandomArrayElement(PRICE)}`,
-      },
-      offer2: {
-        description: `${getRandomArrayElement(OFFERS)}`,
-        price:`${getRandomArrayElement(PRICE)}`,
-      },
-      image: `${getRandomArrayElement(IMAGES)}`
-    },
-  },
-  {
-    typePoint: `${getRandomArrayElement(TYPE)} ${getRandomArrayElement(COUNTRY)}`,
-    dueDate: {
-      start: new Date('2019-03-18T10:30'),
-      end: new Date('2019-03-18T17:00'),
-      number: new Date('2019-03-18')
-    },
-    price: `${getRandomArrayElement(PRICE)}`,
-    offers: {
-      offer1: {
-        description: `${getRandomArrayElement(OFFERS)}`,
-        price:`${getRandomArrayElement(PRICE)}`,
-      },
-      offer2: {
-        description: `${getRandomArrayElement(OFFERS)}`,
-        price:`${getRandomArrayElement(PRICE)}`,
-      },
-      image: `${getRandomArrayElement(IMAGES)}`
-    },
-  },
-  {
-    typePoint: `${getRandomArrayElement(TYPE)} ${getRandomArrayElement(COUNTRY)}`,
-    dueDate: {
-      start: new Date('2019-03-18T12:30'),
-      end: new Date('2019-03-18T14:00'),
-      number: new Date('2019-03-18')
-    },
-    price: `${getRandomArrayElement(PRICE)}`,
-    offers: {
-      offer1: {
-        description: `${getRandomArrayElement(OFFERS)}`,
-        price:`${getRandomArrayElement(PRICE)}`,
-      },
-      offer2: {
-        description: `${getRandomArrayElement(OFFERS)}`,
-        price:`${getRandomArrayElement(PRICE)}`,
-      },
-      image: `${getRandomArrayElement(IMAGES)}`
-    },
-  },
-  {
-    typePoint: `${getRandomArrayElement(TYPE)} ${getRandomArrayElement(COUNTRY)}`,
-    dueDate: {
-      start: new Date('2019-03-20T14:00'),
-      end: new Date('2019-03-20T17:30'),
-      number: new Date('2019-03-20')
-    },
-    price: `${getRandomArrayElement(PRICE)}`,
-    offers: {
-      offer1: {
-        description: `${getRandomArrayElement(OFFERS)}`,
-        price:`${getRandomArrayElement(PRICE)}`,
-      },
-      offer2: {
-        description: `${getRandomArrayElement(OFFERS)}`,
-        price:`${getRandomArrayElement(PRICE)}`,
-      },
-      image: `${getRandomArrayElement(IMAGES)}`
-    },
-  },
-  {
-    typePoint: `${getRandomArrayElement(TYPE)} ${getRandomArrayElement(COUNTRY)}`,
-    dueDate: {
-      start: new Date('2019-03-19T17:30'),
-      end: new Date('2019-03-19T19:00'),
-      number: new Date('2019-03-19')
-    },
-    price: `${getRandomArrayElement(PRICE)}`,
-    offers: {
-      offer1: {
-        description: `${getRandomArrayElement(OFFERS)}`,
-        price:`${getRandomArrayElement(PRICE)}`,
-      },
-      offer2: {
-        description: `${getRandomArrayElement(OFFERS)}`,
-        price:`${getRandomArrayElement(PRICE)}`,
-      },
-      image: `${getRandomArrayElement(IMAGES)}`
-    },
-  },
 ];
+
+function createMockPoints(count) {
+  for (let i = 0; i <= count; i++) {
+    const point = {};
+    const offers = {};
+
+    point.typePoint = `${getRandomArrayElement(TYPE)} ${getRandomArrayElement(COUNTRY)}`;
+    point.dueDate = {start : new Date('2019-03-18T10:30'),
+      end: new Date('2019-03-18T11:00'),
+      number: new Date('2019-03-18')};
+    point.price = getRandomNumber(100);
+    for (let b = 0; b < 3; b++) {
+      offers['offer'[b]] = getRandomArrayElement(OFFERS);
+    }
+    point.offers = offers;
+
+    mockPoints.push(point);
+  }
+}
+createMockPoints(POINT_COUNTS);
 
 function getRandomPoint() {
   return getRandomArrayElement(mockPoints);

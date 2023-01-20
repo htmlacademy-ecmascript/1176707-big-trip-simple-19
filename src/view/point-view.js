@@ -3,7 +3,7 @@ import { humanizePointDate, humanizePointTime , getRandomNumber} from '../util.j
 
 
 function addPoint(point) {
-  const { typePoint, dueDate, price, offers , image} = point;
+  const { typePoint, dueDate, price, offers } = point;
 
   return (
     `<li class="trip-events__item">
@@ -26,14 +26,14 @@ function addPoint(point) {
           <h4 class="visually-hidden">Offers:</h4>
         <ul class="event__selected-offers">
             <li class="event__offer">
-            <span class="event__offer-title">${offers.offer1.description}</span>
+            <span class="event__offer-title">${offers.f.name}</span>
             &plus;&euro;&nbsp;
-            <span class="event__offer-price">${offers.offer1.price}</span>
+            <span class="event__offer-price">${offers.f.price}</span>
             </li>
             <li class="event__offer">
-            <span class="event__offer-title">${offers.offer2.description}</span>
+            <span class="event__offer-title">${offers.o.name}</span>
             &plus;&euro;&nbsp;
-            <span class="event__offer-price">${offers.offer2.price}</span>
+            <span class="event__offer-price">${offers.o.price}</span>
             </li>
         </ul>
         <button class="event__rollup-btn" type="button">
