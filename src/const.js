@@ -1,40 +1,113 @@
 import { getRandomNumber } from './util';
 
 const TYPE = [ 'Taxi' , 'Drive' , 'Check-in' , 'Flight' , 'Sightseeing' , 'Bus' , 'Restaurant' , 'Ship' , 'Train' , 'Transport'];
-const COUNTRY = [ 'Amsterdam' , 'Chamonix' , 'Geneva' , 'Brasilia' , 'Valencia' , 'Gomel' ];
+const COUNTRY = [
+  {
+    id: 1,
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    name: 'Amsterdam',
+    pictures:
+      {
+        src: `https://loremflickr.com/248/152?random=${getRandomNumber(100)}`,
+        description: 'Chamonix parliament building'
+      }
+  },
+  {
+    id: 2,
+    description: 'Chamonix, is a beautiful city, a true asian pearl, with crowded streets.',
+    name: 'Chamonix',
+    pictures:
+      {
+        src: `https://loremflickr.com/248/152?random=${getRandomNumber(100)}`,
+        description: 'Chamonix parliament building'
+      }
+  
+  },
+  {
+    id: 3,
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    name: 'Geneva',
+    pictures:
+      {
+        src: `https://loremflickr.com/248/152?random=${getRandomNumber(100)}`,
+        description: 'Chamonix parliament building'
+      }
+
+  },
+  {
+    id: 4,
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    name: 'Brasilia',
+    pictures:
+      {
+        src: `https://loremflickr.com/248/152?random=${getRandomNumber(100)}`,
+        description: 'Chamonix parliament building'
+      }
+
+  },
+  {
+    id: 5,
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    name: 'Valencia',
+    pictures:
+      {
+        src: `https://loremflickr.com/248/152?random=${getRandomNumber(100)}`,
+        description: 'Chamonix parliament building'
+      }
+
+  },
+  {
+    id: 6,
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    name: 'Gomel',
+    pictures:
+      {
+        src: `https://loremflickr.com/248/152?random=${getRandomNumber(100)}`,
+        description: 'Chamonix parliament building'
+      }
+
+  }
+];
 const OFFERS = [
   {
-    name: 'Book tickets',
+    id: 1,
+    title: 'Book tickets',
     price: getRandomNumber(100)
   },
 
   {
-    name:'Lunch in city',
+    id: 2,
+    title:'Lunch in city',
     price: getRandomNumber(100)
   },
 
   {
-    name:'Add luggage',
+    id: 3,
+    title:'Add luggage',
     price: getRandomNumber(100)
   },
 
   {
-    name: 'Switch to comfort',
+    id: 4,
+    title: 'Switch to comfort',
     price: getRandomNumber(100)
   },
 
   {
-    name: 'Add breakfast',
+    id: 5,
+    title: 'Add breakfast',
     price: getRandomNumber(100)
   },
 
   {
-    name:'Order Uber',
+    id: 6,
+    title:'Order Uber',
     price: getRandomNumber(100)
   },
 
   {
-    name:'Rent a car',
+    id: 7,
+    title:'Rent a car',
     price: getRandomNumber(100)
   }
 ];

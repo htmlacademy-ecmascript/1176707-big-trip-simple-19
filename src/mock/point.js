@@ -9,20 +9,23 @@ function createMockPoints(count) {
     const point = {};
     const offers = {};
 
-    point.typePoint = `${getRandomArrayElement(TYPE)} ${getRandomArrayElement(COUNTRY)}`;
-    point.dueDate = {start : new Date('2019-03-18T10:30'),
-      end: new Date('2019-03-18T11:00'),
-      number: new Date('2019-03-18')};
-    point.price = getRandomNumber(100);
+    point['type'] = `${getRandomArrayElement(TYPE)}`;
+    point['date_from'] = new Date('2019-07-10T10:30');
+    point['date_to'] = new Date('2019-07-10T22:55');
+    point['base_price'] = getRandomNumber(100);
+    point['destination'] = getRandomArrayElement(COUNTRY);
+    point['id'] = `${i}`;
     for (let b = 0; b < 3; b++) {
       offers['offer'[b]] = getRandomArrayElement(OFFERS);
     }
-    point.offers = offers;
+    point['offers'] = offers;
 
     mockPoints.push(point);
   }
 }
 createMockPoints(POINT_COUNTS);
+
+console.log(mockPoints);
 
 function getRandomPoint() {
   return getRandomArrayElement(mockPoints);

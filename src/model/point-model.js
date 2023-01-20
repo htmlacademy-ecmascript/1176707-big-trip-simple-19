@@ -9,3 +9,5 @@ export default class PointModel {
     return this.points;
   }
 }
+
+export { POINT_COUNT };
