@@ -21,7 +21,6 @@ const COUNTRY = [
         src: `https://loremflickr.com/248/152?random=${getRandomNumber(100)}`,
         description: 'Chamonix parliament building'
       }
-  
   },
   {
     id: 3,
@@ -32,7 +31,6 @@ const COUNTRY = [
         src: `https://loremflickr.com/248/152?random=${getRandomNumber(100)}`,
         description: 'Chamonix parliament building'
       }
-
   },
   {
     id: 4,
@@ -43,7 +41,6 @@ const COUNTRY = [
         src: `https://loremflickr.com/248/152?random=${getRandomNumber(100)}`,
         description: 'Chamonix parliament building'
       }
-
   },
   {
     id: 5,
@@ -54,7 +51,6 @@ const COUNTRY = [
         src: `https://loremflickr.com/248/152?random=${getRandomNumber(100)}`,
         description: 'Chamonix parliament building'
       }
-
   },
   {
     id: 6,
@@ -65,7 +61,6 @@ const COUNTRY = [
         src: `https://loremflickr.com/248/152?random=${getRandomNumber(100)}`,
         description: 'Chamonix parliament building'
       }
-
   }
 ];
 const OFFERS = [
