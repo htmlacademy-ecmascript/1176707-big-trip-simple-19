@@ -3,7 +3,9 @@ import { humanizePointDate, humanizePointTime } from '../util.js';
 
 
 function addPoint(point) {
-  const { price , dateStart, dateEnd , destination , offers , type } = point;
+  const { destination , offers , type } = point;
+  const dateStart = point['date_from'];
+  const dateEnd = point['date_to'];
 
   return (
     `<li class="trip-events__item">
@@ -22,7 +24,7 @@ function addPoint(point) {
         </div>
             <p class="event__price">
             &euro;&nbsp;
-            <span class="event__price-value">${price}</span>
+            <span class="event__price-value">${point['base_price']}</span>
           <h4 class="visually-hidden">Offers:</h4>
         <ul class="event__selected-offers">
             <li class="event__offer">

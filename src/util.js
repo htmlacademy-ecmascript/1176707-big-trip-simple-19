@@ -19,8 +19,11 @@ function getRandomNumber(max) {
   return Math.floor(Math.random() * max + 1);
 }
 
-function getRandomDate() {
-  return `2022-03-${getRandomNumber(30)}T${getRandomNumber(23)}:${getRandomNumber(58)}`;
+function generateRandomDate(start, end, startHour, endHour) {
+  const date = new Date(+start + Math.random() * (end - start));
+  const hour = startHour + Math.random() * (endHour - startHour) | 0;
+  date.setHours(hour);
+  return date;
 }
 
-export {getRandomArrayElement, humanizePointDate, humanizePointTime, getRandomNumber , getRandomDate};
+export {getRandomArrayElement, humanizePointDate, humanizePointTime, getRandomNumber , generateRandomDate};
