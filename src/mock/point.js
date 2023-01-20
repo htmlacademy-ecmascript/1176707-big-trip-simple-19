@@ -26,8 +26,8 @@ function createObjects(count) {
 function createPoint(i) {
   return {
     type: `${getRandomArrayElement(TYPE)}`,
-    'date_from': new Date(generateRandomDate(new Date(2022, 0, 12), new Date(), 0, 12)),
-    'date_to': new Date(generateRandomDate(new Date(2020, 12, 24), new Date(), 12, 24)),
+    'date_from': `${(generateRandomDate(new Date(2022, 0, 12), new Date(), 0, 12))}`,
+    'date_to': `${(generateRandomDate(new Date(2020, 12, 24), new Date(), 12, 24))}`,
     'base_price': getRandomNumber(2000),
     destination: getRandomArrayElement(COUNTRY),
     id: i
@@ -40,8 +40,4 @@ function createOffers(offers,) {
   }
 }
 
-function getRandomPoint() {
-  return getRandomArrayElement(mockPoints);
-}
-
-export {getRandomPoint};
+export { mockPoints };
