@@ -1,21 +1,22 @@
-import { getRandomArrayElement, getRandomNumber , generateRandomDate} from '../util.js';
+import { getRandomArrayElement, getRandomNumber , generateRandomDate } from '../util.js';
 import { TYPE , COUNTRY , OFFERS, POINT_COUNTS } from '../const.js';
 
 const mockPoints = [
 ];
 
 createMockPoints(POINT_COUNTS);
+console.log(mockPoints);
 
 function createMockPoints(count) {
   createObjects(count);
 }
 
 function createObjects(count) {
-  for (let i = 0; i <= count; i++) {
+  for (let i = 0; i < count; i++) {
     const point = {};
     const offers = {};
-    const offer = OFFERS.find((item) => item.id === getRandomNumber(6));
-    const destination = COUNTRY.find((item) => item.id === getRandomNumber(5));
+    const offer = OFFERS.find((item) => item.id === getRandomNumber(7));
+    const destination = COUNTRY.find((item) => item.id === getRandomNumber(6));
 
     point[i] = createPoint(i , destination);
     createOffers(offers, offer);

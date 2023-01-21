@@ -26,4 +26,4 @@ function generateRandomDate(start, end, startHour, endHour) {
   return date;
 }
 
-export {getRandomArrayElement, humanizePointDate, humanizePointTime, getRandomNumber , generateRandomDate};
+export {getRandomArrayElement, humanizePointDate, humanizePointTime, getRandomNumber , generateRandomDate };
