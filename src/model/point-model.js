@@ -1,5 +1,5 @@
-import { mockPoints } from '../mock/point.js';
-import { COUNTRIES, OFFERS } from '../const.js';
+import {mockPoints} from '../mock/point.js';
+import {COUNTRIES, OFFERS} from '../const.js';
 
 export default class PointModel {
   points = mockPoints;

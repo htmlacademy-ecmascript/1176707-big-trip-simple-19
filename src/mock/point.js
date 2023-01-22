@@ -1,5 +1,5 @@
-import { getRandomArrayElement, getRandomNumber, generateRandomDate } from '../util.js';
-import { TYPES, COUNTRIES, OFFERS, POINT_AMOUNT} from '../const.js';
+import {getRandomArrayElement, getRandomNumber, generateRandomDate} from '../util.js';
+import {TYPES, COUNTRIES, OFFERS, POINT_AMOUNT} from '../const.js';
 
 const mockPoints = [
 ];
@@ -45,4 +45,4 @@ function generateDestinationId() {
   return COUNTRIES[getRandomNumber(COUNTRIES.length - 1)].id;
 }
 
-export { mockPoints };
+export {mockPoints};
