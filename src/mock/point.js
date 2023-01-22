@@ -15,31 +15,29 @@ function createObjects(count) {
   for (let i = 0; i < count; i++) {
     const point = {};
     const offers = {};
-    const offer = OFFERS.find((item) => item.id === getRandomNumber(7));
-    const destination = COUNTRY.find((item) => item.id === getRandomNumber(6));
 
-    point[i] = createPoint(i , destination);
-    createOffers(offers, offer);
+    point[i] = createPoint(i );
+    createOffers(offers);
     point[i].offers = offers;
 
     mockPoints.push(point[i]);
   }
 }
 
-function createPoint(i, destination) {
+function createPoint(i) {
   return {
     type: `${getRandomArrayElement(TYPE)}`,
     'date_from': `${(generateRandomDate(new Date(2022, 0, 12), new Date(), 0, 12))}`,
     'date_to': `${(generateRandomDate(new Date(2020, 12, 24), new Date(), 12, 24))}`,
     'base_price': getRandomNumber(2000),
-    destination: destination,
+    destination: getRandomArrayElement(COUNTRY),
     id: i
   };
 }
 
-function createOffers(offers, offer) {
+function createOffers(offers) {
   for (let b = 0; b < 3; b++) {
-    offers['offer'[b]] = offer;
+    offers['offer'[b]] = getRandomArrayElement(OFFERS);
   }
 }
 
