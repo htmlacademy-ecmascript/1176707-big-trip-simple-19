@@ -6,6 +6,13 @@ function addPoint(point) {
   const { destination , offers , type } = point;
   const dateStart = point['date_from'];
   const dateEnd = point['date_to'];
+  const offersTemplate = offers.map((offer) => `
+    <li class="event__offer">
+    <span class="event__offer-title">${offer.title}</span>
+    &plus;&euro;&nbsp;
+    <span class="event__offer-price">${offer.price}</span>
+    </li>
+    `).join('');
 
   return (
     `<li class="trip-events__item">
@@ -27,16 +34,7 @@ function addPoint(point) {
             <span class="event__price-value">${point['base_price']}</span>
           <h4 class="visually-hidden">Offers:</h4>
         <ul class="event__selected-offers">
-            <li class="event__offer">
-            <span class="event__offer-title">${offers.f.title}</span>
-            &plus;&euro;&nbsp;
-            <span class="event__offer-price">${offers.f.price}</span>
-            </li>
-            <li class="event__offer">
-            <span class="event__offer-title">${offers.o.title}</span>
-            &plus;&euro;&nbsp;
-            <span class="event__offer-price">${offers.o.price}</span>
-            </li>
+            ${offersTemplate}
         </ul>
         <button class="event__rollup-btn" type="button">
         <span class="visually-hidden">Open event</span>

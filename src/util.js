@@ -4,7 +4,7 @@ const DATE_FORMAT = 'MMM D';
 const TIME_FORMAT = 'HH:mm';
 
 function getRandomArrayElement(items) {
-  return items[Math.floor(Math.random() * items.length)];
+  return items[getRandomNumber(items.length - 1)];
 }
 
 function humanizePointDate(dueDate) {
@@ -15,8 +15,11 @@ function humanizePointTime(dueDate) {
   return dueDate ? dayjs(dueDate).format(TIME_FORMAT) : '';
 }
 
-function getRandomNumber(max) {
-  return Math.floor(Math.random() * max + 1);
+function getRandomNumber(min , max) {
+  if (max === undefined) {
+    return Math.floor(Math.random() * min);
+  }
+  return Math.max(min , Math.floor(Math.random() * max));
 }
 
 function generateRandomDate(start, end, startHour, endHour) {

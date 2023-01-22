@@ -1,9 +1,9 @@
 import { getRandomNumber } from './util';
 
 const TYPE = [ 'Taxi' , 'Drive' , 'Check-in' , 'Flight' , 'Sightseeing' , 'Bus' , 'Restaurant' , 'Ship' , 'Train' , 'Transport'];
-const COUNTRY = [
+const COUNTRIES = [
   {
-    id: 1,
+    id: 0,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     name: 'Amsterdam',
     pictures:
@@ -13,7 +13,7 @@ const COUNTRY = [
       }
   },
   {
-    id: 2,
+    id: 1,
     description: 'Chamonix, is a beautiful city, a true asian pearl, with crowded streets.',
     name: 'Chamonix',
     pictures:
@@ -23,7 +23,7 @@ const COUNTRY = [
       }
   },
   {
-    id: 3,
+    id: 2,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     name: 'Geneva',
     pictures:
@@ -33,7 +33,7 @@ const COUNTRY = [
       }
   },
   {
-    id: 4,
+    id: 3,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     name: 'Brasilia',
     pictures:
@@ -43,7 +43,7 @@ const COUNTRY = [
       }
   },
   {
-    id: 5,
+    id: 4,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     name: 'Valencia',
     pictures:
@@ -53,7 +53,7 @@ const COUNTRY = [
       }
   },
   {
-    id: 6,
+    id: 5,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     name: 'Gomel',
     pictures:
@@ -65,47 +65,47 @@ const COUNTRY = [
 ];
 const OFFERS = [
   {
-    id: 1,
+    id: 0,
     title: 'Book tickets',
     price: getRandomNumber(100)
   },
 
   {
-    id: 2,
+    id: 1,
     title:'Lunch in city',
     price: getRandomNumber(100)
   },
 
   {
-    id: 3,
+    id: 2,
     title:'Add luggage',
     price: getRandomNumber(100)
   },
 
   {
-    id: 4,
+    id: 3,
     title: 'Switch to comfort',
     price: getRandomNumber(100)
   },
 
   {
-    id: 5,
+    id: 4,
     title: 'Add breakfast',
     price: getRandomNumber(100)
   },
 
   {
-    id: 6,
+    id: 5,
     title:'Order Uber',
     price: getRandomNumber(100)
   },
 
   {
-    id: 7,
+    id: 6,
     title:'Rent a car',
     price: getRandomNumber(100)
   }
 ];
 const POINT_COUNTS = 10;
 
-export {TYPE , COUNTRY , OFFERS , POINT_COUNTS };
+export {TYPE , COUNTRIES , OFFERS , POINT_COUNTS };
