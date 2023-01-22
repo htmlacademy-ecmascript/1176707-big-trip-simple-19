@@ -3,7 +3,7 @@ import {humanizePointDate, humanizePointTime} from '../util.js';
 
 
 function addPoint(point) {
-  const { destination , offers , type } = point;
+  const {destination, offers, type} = point;
   const dateStart = point['date_from'];
   const dateEnd = point['date_to'];
   const offersTemplate = offers.map((offer) => `

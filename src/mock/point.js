@@ -34,7 +34,7 @@ function createPoint(i) {
 
 function generateOfferIds() {
   const offers = new Set();
-  const value = getRandomNumber(1 , 3);
+  const value = getRandomNumber(1, 3);
   while (offers.size < value) {
     offers.add(OFFERS[getRandomNumber(OFFERS.length - 1)].id);
   }

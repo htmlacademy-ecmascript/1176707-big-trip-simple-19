@@ -15,11 +15,11 @@ function humanizePointTime(dueDate) {
   return dueDate ? dayjs(dueDate).format(TIME_FORMAT) : '';
 }
 
-function getRandomNumber(min , max) {
+function getRandomNumber(min, max) {
   if (max === undefined) {
     return Math.floor(Math.random() * min);
   }
-  return Math.max(min , Math.floor(Math.random() * max));
+  return Math.max(min, Math.floor(Math.random() * max));
 }
 
 function generateRandomDate(start, end, startHour, endHour) {
