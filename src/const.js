@@ -1,6 +1,6 @@
 import {getRandomNumber} from './util';
 
-const TYPES = [ 'Taxi' , 'Drive' , 'Check-in' , 'Flight' , 'Sightseeing' , 'Bus' , 'Restaurant' , 'Ship' , 'Train' , 'Transport'];
+const TYPES = ['Taxi','Drive','Check-in','Flight','Sightseeing','Bus','Restaurant','Ship','Train','Transport'];
 const COUNTRIES = [
   {
     id: 0,
