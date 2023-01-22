@@ -1,5 +1,5 @@
 import {createElement} from '../render.js';
-import { humanizePointDate, humanizePointTime } from '../util.js';
+import {humanizePointDate, humanizePointTime} from '../util.js';
 
 
 function addPoint(point) {
