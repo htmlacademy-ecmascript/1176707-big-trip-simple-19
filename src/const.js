@@ -1,6 +1,6 @@
 import { getRandomNumber } from './util';
 
-const TYPE = [ 'Taxi' , 'Drive' , 'Check-in' , 'Flight' , 'Sightseeing' , 'Bus' , 'Restaurant' , 'Ship' , 'Train' , 'Transport'];
+const TYPES = [ 'Taxi' , 'Drive' , 'Check-in' , 'Flight' , 'Sightseeing' , 'Bus' , 'Restaurant' , 'Ship' , 'Train' , 'Transport'];
 const COUNTRIES = [
   {
     id: 0,
@@ -106,6 +106,6 @@ const OFFERS = [
     price: getRandomNumber(100)
   }
 ];
-const POINT_COUNTS = 10;
+const POINT_AMOUNT = 10;
 
-export {TYPE , COUNTRIES , OFFERS , POINT_COUNTS };
+export {TYPES , COUNTRIES , OFFERS , POINT_AMOUNT };

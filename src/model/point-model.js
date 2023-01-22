@@ -1,8 +1,6 @@
 import { mockPoints } from '../mock/point.js';
 import { COUNTRIES, OFFERS } from '../const.js';
 
-const POINT_COUNT = 9;
-
 export default class PointModel {
   points = mockPoints;
 
@@ -21,5 +19,3 @@ export default class PointModel {
     });
   }
 }
-
-export { POINT_COUNT };
