@@ -162,19 +162,26 @@ function createPointEditTemplate() {
 }
 
 export default class PointEditView {
-  getTemplate() {
-    return createPointEditTemplate();
+  #element = null;
+  #point = null;
+
+  constructor({points}) {
+    this.#point = points;
+  }
+
+  get template() {
+    return createPointEditTemplate(this.#point);
   }
 
   getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
+    if (!this.#element) {
+      this.#element = createElement(this.template());
     }
 
-    return this.element;
+    return this.#element;
   }
 
   removeElement() {
-    this.element = null;
+    this.#element = null;
   }
 }
