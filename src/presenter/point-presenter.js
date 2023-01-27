@@ -23,7 +23,6 @@ export default class PointPresenter {
     this.#pointList = [...this.#pointModel.point];
 
     for (let i = 0; i < this.#pointList.length; i++) {
-      console.log(this.#pointList);
       this.#renderPoint(this.#pointList[i]);
     }
   }
