@@ -3,9 +3,11 @@ import {humanizePointDate, humanizePointTime} from '../util.js';
 
 
 function addPoint(point) {
-  const {destination, offers, type} = point;
+  const type = point.type;
+  const destination = point.destination;
   const dateStart = point['date_from'];
   const dateEnd = point['date_to'];
+  const offers = point.offers;
   const offersTemplate = offers.map((offer) => `
     <li class="event__offer">
     <span class="event__offer-title">${offer.title}</span>
@@ -48,7 +50,7 @@ export default class PointView {
   #element = null;
   #point = null;
 
-  constructor(point) {
+  constructor({point}) {
     this.#point = point;
   }
 
@@ -58,7 +60,7 @@ export default class PointView {
 
   get element() {
     if (!this.#element) {
-      this.#element = createElement(this.template());
+      this.#element = createElement(this.template);
     }
 
     return this.#element;

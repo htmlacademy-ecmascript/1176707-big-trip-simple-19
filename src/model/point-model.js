@@ -4,7 +4,7 @@ import {COUNTRIES, OFFERS} from '../const.js';
 export default class PointModel {
   points = mockPoints;
 
-  getPoints() {
+  get point() {
     return this.points.map((point) => {
       const destination = COUNTRIES.find(
         ({ id: countryId }) => countryId === point.destination

@@ -1,27 +1,30 @@
 import PointsListView from '../view/points-list-view.js';
 import PointView from '../view/point-view.js';
 import PointEditView from '../view/point-edit-view.js';
-import PointModel from '../model/point-model.js';
+import SortView from '../view/sort-view.js';
 import {render} from '../render.js';
 
 export default class PointPresenter {
-  #renderTask = null;
+  #pointContainer = null;
+  #pointListComponent = null;
+  #pointModel = null;
+  #sortComponent = null;
 
-  constructor({pointContainer}) {
-    this.pointContainer = pointContainer;
-    this.pointListComponent = new PointsListView();
-    this.pointModel = new PointModel();
+  #pointList = [];
+
+  constructor({pointContainer, pointModel}) {
+    this.#pointContainer = pointContainer;
+    this.#pointModel = pointModel;
+    this.#pointListComponent = new PointsListView();
+    this.#sortComponent = new SortView();
   }
 
   init() {
-    render(this.pointListComponent, this.pointContainer);
+    this.#pointList = [...this.#pointModel.point];
 
-    const points = this.pointModel.getPoints();
-
-    for (let i = 0; i < points.length; i++) {
-      render(new PointView(points[i]), this.pointListComponent.getElement());
-      render(new PointEditView(points[i]), this.pointListComponent.getElement());
-      this.#renderPoint(points[i]);
+    for (let i = 0; i < this.#pointList.length; i++) {
+      console.log(this.#pointList);
+      this.#renderPoint(this.#pointList[i]);
     }
   }
 
@@ -30,23 +33,23 @@ export default class PointPresenter {
     const pointEditComponent = new PointEditView({points});
 
     const openEditFormPoint = () => {
-      this.pointListComponent.getElement.replaceChild(pointEditComponent.getElement);
+      this.#pointListComponent.getElement.replaceChild(pointEditComponent.getElement);
     };
 
     const closeEditFormPoint = () => {
-      this.pointListComponent.getElement.replaceChild(pointEditComponent.getElement);
+      this.#pointListComponent.getElement.replaceChild(pointEditComponent.getElement);
     };
 
-    pointComponent.getElement.querySelector('.event__rollup-btn').addEventListener('click', () => {
+    pointComponent.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
       openEditFormPoint();
     });
 
-    pointEditComponent.getElement.querySelector('event__save-btn  btn  btn--blue').addEventListener('submit', (evt) => {
+    pointEditComponent.element.querySelector('event__save-btn  btn  btn--blue').addEventListener('submit', (evt) => {
       evt.preventDefault();
       closeEditFormPoint();
     });
 
-    render(pointComponent, this.pointListComponent.getElement);
-    render(pointEditComponent, this.pointListComponent.getElement);
+    render(pointComponent, this.#pointListComponent.element);
+    render(pointEditComponent, this.#pointListComponent.element);
   }
 }
