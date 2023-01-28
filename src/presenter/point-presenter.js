@@ -39,7 +39,7 @@ export default class PointPresenter {
     };
 
     const documentKeyDownHandler = (evt) => {
-      if (evt.key === 'Escape' || evt.key === 'Esc') {
+      if (evt.key === 'Escape' || evt.key === 'Esc' || evt.key === 38) {
         evt.preventDefault();
         replaceEditToPoint();
         document.removeEventListener('keydown', documentKeyDownHandler);
