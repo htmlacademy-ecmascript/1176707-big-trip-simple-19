@@ -165,7 +165,7 @@ export default class PointEditView {
   #element = null;
   #point = null;
 
-  constructor({points}) {
+  constructor(points) {
     this.#point = points;
   }
 
@@ -173,7 +173,7 @@ export default class PointEditView {
     return createPointEditTemplate(this.#point);
   }
 
-  getElement() {
+  get element() {
     if (!this.#element) {
       this.#element = createElement(this.template);
     }

@@ -48,8 +48,8 @@ export default class PointView {
   #element = null;
   #point = null;
 
-  constructor({point}) {
-    this.#point = point;
+  constructor(points) {
+    this.#point = points;
   }
 
   get template() {
