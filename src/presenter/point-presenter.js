@@ -38,28 +38,28 @@ export default class PointPresenter {
       this.#pointListComponent.element.replaceChild(pointComponent.element, pointEditComponent.element);
     };
 
-    const escKeyDownHandler = (evt) => {
+    const documentKeyDownHandler = (evt) => {
       if (evt.key === 'Escape' || evt.key === 'Esc') {
         evt.preventDefault();
         replaceEditToPoint();
-        document.removeEventListener('keydown', escKeyDownHandler);
+        document.removeEventListener('keydown', documentKeyDownHandler);
       }
     };
 
     pointComponent.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
       replacePointToEdit();
-      document.addEventListener('keydown', escKeyDownHandler);
+      document.addEventListener('keydown', documentKeyDownHandler);
     });
 
     pointEditComponent.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
       replaceEditToPoint();
-      document.addEventListener('keydown', escKeyDownHandler);
+      document.addEventListener('keydown', documentKeyDownHandler);
     });
 
     pointEditComponent.element.querySelector('.event__save-btn').addEventListener('submit', (evt) => {
       evt.preventDefault();
       replaceEditToPoint();
-      document.addEventListener('keydown', escKeyDownHandler);
+      document.addEventListener('keydown', documentKeyDownHandler);
     });
 
     render(pointComponent, this.#pointListComponent.element);
