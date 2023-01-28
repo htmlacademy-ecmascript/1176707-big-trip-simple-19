@@ -7,8 +7,8 @@ function createPointEditTemplate(point) {
   const dateEnd = point['date_to'];
   const offersTemplate = offers.map((offer) => `
   <div class="event__offer-selector">
-  <input class="event__offer-checkbox  visually-hidden" id="event-offer-luggage-1" type="checkbox" name="event-offer-luggage" checked>
-  <label class="event__offer-label" for="event-offer-luggage-1">
+  <input class="event__offer-checkbox  visually-hidden" id="event-offer-luggage-${offer.id}" type="checkbox" name="event-offer-luggage" checked>
+  <label class="event__offer-label" for="event-offer-luggage-${offer.id}">
     <span class="event__offer-title"> ${offer.title}</span>
     &plus;&euro;&nbsp;
     <span class="event__offer-price">${offer.price}</span>
@@ -125,7 +125,7 @@ function createPointEditTemplate(point) {
 
             <section class="event__section  event__section--destination">
               <h3 class="event__section-title  event__section-title--destination">Destination</h3>
-              <p class="event__destination-description">Chamonix-Mont-Blanc (usually shortened to Chamonix) is a resort area near the junction of France, Switzerland and Italy. At the base of Mont Blanc, the highest summit in the Alps, it's renowned for its skiing.</p>
+              <p class="event__destination-description">${destination.description}</p>
             </section>
           </section>
         </form>

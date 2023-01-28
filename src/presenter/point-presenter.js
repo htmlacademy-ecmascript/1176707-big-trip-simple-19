@@ -53,13 +53,13 @@ export default class PointPresenter {
 
     pointEditComponent.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
       replaceEditToPoint();
-      document.addEventListener('keydown', documentKeyDownHandler);
+      document.removeEventListener('keydown', documentKeyDownHandler);
     });
 
-    pointEditComponent.element.querySelector('.event__save-btn').addEventListener('submit', (evt) => {
+    pointEditComponent.element.querySelector('form').addEventListener('submit', (evt) => {
       evt.preventDefault();
       replaceEditToPoint();
-      document.addEventListener('keydown', documentKeyDownHandler);
+      document.removeEventListener('keydown', documentKeyDownHandler);
     });
 
     render(pointComponent, this.#pointListComponent.element);
