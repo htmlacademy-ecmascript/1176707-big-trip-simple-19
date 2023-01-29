@@ -49,6 +49,7 @@ export default class PointPresenter {
     pointComponent.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
       replacePointToEdit();
       document.addEventListener('keydown', documentKeyDownHandler);
+      existingList();
     });
 
     pointEditComponent.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
@@ -61,6 +62,16 @@ export default class PointPresenter {
       replaceEditToPoint();
       document.removeEventListener('keydown', documentKeyDownHandler);
     });
+
+    const existingList = function () {
+      let point;
+      for (let i = 0; i < this.#pointList.length; i++) {
+        point = this.#pointList[i];
+        if (point !== this) {
+          point.replaceEditToPoint();
+        }
+      }
+    }
 
     render(pointComponent, this.#pointListComponent.element);
   }
