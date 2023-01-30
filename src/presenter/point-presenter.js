@@ -26,10 +26,11 @@ export default class PointPresenter {
 
     this.#pointComponent = new PointView({
       point: this.#point,
-      onEditClick: this.#handleEditClick,
+      onClick: this.#handleEditClick,
     });
     this.#pointEditComponent = new PointEditView({
       point: this.#point,
+      onClick: this.#handleEditClick,
       onFormSubmit: this.#handleFormSubmit,
     });
 

@@ -142,7 +142,7 @@ export default class PointEditView {
     this.#point = points;
     this.#handleFormSubmit = onFormSubmit;
 
-    this.element.querySelector('form').addEventListener('submit', this.#formSubmitHandler);
+    this.element.querySelector('.event__save-btn').addEventListener('submit', this.#formSubmitHandler);
   }
 
   get template() {
