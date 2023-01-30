@@ -136,9 +136,13 @@ function createPointEditTemplate(point) {
 export default class PointEditView {
   #element = null;
   #point = null;
+  #handleFormSubmit = null;
 
-  constructor(points) {
+  constructor(points, onFormSubmit) {
     this.#point = points;
+    this.#handleFormSubmit = onFormSubmit;
+
+    this.element.querySelector('form').addEventListener('submit', this.#formSubmitHandler);
   }
 
   get template() {
@@ -156,4 +160,9 @@ export default class PointEditView {
   removeElement() {
     this.#element = null;
   }
+
+  #formSubmitHandler = (evt) => {
+    evt.preventDefault();
+    this.#handleFormSubmit(this.#point);
+  };
 }

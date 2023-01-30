@@ -47,9 +47,13 @@ function addPoint(point) {
 export default class PointView {
   #element = null;
   #point = null;
+  #handleClick = null;
 
-  constructor(points) {
-    this.#point = points;
+  constructor(point, onClick) {
+    this.#point = point;
+    this.#handleClick = onClick;
+
+    this.element.querySelector('.card__btn--edit').addEventListener('click', this.#handleClick);
   }
 
   get template() {
@@ -67,4 +71,9 @@ export default class PointView {
   removeElement() {
     this.#element = null;
   }
+
+  #editClickHandler = (evt) => {
+    evt.preventDefault();
+    this.#handleClick();
+  };
 }
