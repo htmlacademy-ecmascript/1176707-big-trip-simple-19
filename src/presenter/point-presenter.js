@@ -7,7 +7,6 @@ export default class PointPresenter {
   #pointContainer = null;
   #pointListComponent = null;
   #pointModel = null;
-  #existingList = null;
 
   #pointList = [];
 

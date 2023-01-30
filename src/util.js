@@ -34,4 +34,8 @@ function generateRandomDate(start, end, startHour, endHour) {
   return date;
 }
 
-export {getRandomArrayElement, humanizePointDate, humanizePointTime, getRandomNumber, generateRandomDate, humanizePointFull};
+function updateItem(items, update) {
+  return items.map((item) => item.id === update.id ? update : item);
+}
+
+export {getRandomArrayElement, humanizePointDate, humanizePointTime, getRandomNumber, generateRandomDate, humanizePointFull, updateItem};
