@@ -36,6 +36,5 @@ export default class ListPresenter {
       onModeChange: this.#handleModeChange
     });
     pointPresenter.init(point);
-    this.#pointPresenter.set(point.id, pointPresenter);
   }
 }

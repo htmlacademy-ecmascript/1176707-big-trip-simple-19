@@ -49,11 +49,11 @@ export default class PointView {
   #point = null;
   #handleClick = null;
 
-  constructor(point) {
-    this.#point = point.point;
-    this.#handleClick = point.onClick.
+  constructor(points) {
+    this.#point = points.point;
+    this.#handleClick = points.onClick;
 
-      this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#handleClick);
+    this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#editClickHandler);
   }
 
   get template() {

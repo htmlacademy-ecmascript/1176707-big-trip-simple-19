@@ -7,20 +7,18 @@ export default class PointPresenter {
   #pointListContainer = null;
   #pointEditComponent = null;
   #pointComponent = null;
-  #listComponent = null;
-  #handleModeChange = null;
+  #onModeChange = null;
 
   #point = null;
   #mode = MODE.DEFAULT;
 
-  constructor(pointListContainer, onModeChange) {
+  constructor({pointListContainer, onModeChange}) {
     this.#pointListContainer = pointListContainer;
-    this.#handleModeChange = onModeChange;
+    this.#onModeChange = onModeChange;
   }
 
   init(point) {
     this.#point = point;
-
     const prevPointComponent = this.#pointComponent;
     const prevPointEditComponent = this.#pointEditComponent;
 
@@ -35,28 +33,32 @@ export default class PointPresenter {
     });
 
     if (prevPointComponent === null || prevPointEditComponent === null) {
-      render(this.#pointComponent, this.#pointListContainer);
+      render(this.#pointComponent.point, this.#pointListContainer);
       return;
     }
 
     if (this.#mode === MODE.DEFAULT) {
-      this.#listComponent.element.replaceChild(this.#pointComponent, prevPointComponent);
+      this.#point.element.replaceChild(this.#pointComponent.onClick, prevPointComponent);
     }
 
     if (this.#mode === MODE.EDITING) {
-      this.#listComponent.element.replaceChild(this.#pointEditComponent, prevPointEditComponent);
+      this.#point.element.replaceChild(this.#pointEditComponent.onClick, prevPointEditComponent);
     }
+    if (this.#mode === MODE.EDITING) {
+      this.#point.element.replaceChild(this.#pointEditComponent.onFormSubmit, prevPointEditComponent);
+    }
+
   }
 
   #replacePointToEdit() {
-    this.#listComponent.element.replaceChild(this.#pointEditComponent.element, this.#pointComponent.element);
+    this.#point.element.replaceChild(this.#pointEditComponent.element, this.#pointComponent.element);
     document.addEventListener('keydown', this.#documentKeyDownHandler);
-    this.#handleModeChange();
+    this.#onModeChange();
     this.#mode = MODE.EDITING;
   }
 
   #replaceEditToPoint() {
-    this.#listComponent.element.replaceChild(this.#pointComponent.element, this.#pointEditComponent.element);
+    this.#point.element.replaceChild(this.#pointComponent.element, this.#pointEditComponent.element);
     document.removeEventListener('keydown', this.#documentKeyDownHandler);
     this.#mode = MODE.DEFAULT;
   }
@@ -70,7 +72,10 @@ export default class PointPresenter {
   };
 
   #handleEditClick = () => {
-    this.#replacePointToEdit();
+    if(this.#mode === MODE.DEFAULT){
+      this.#replacePointToEdit();
+    }
+    this.#replaceEditToPoint();
   };
 
   #handleFormSubmit = () => {
