@@ -26,13 +26,28 @@ export default class ListPresenter {
     }
   }
 
-  #moodeChecker(){
-
+  #replacePointToEdit() {
+    replace(this.#pointListComponent.element, this.#pointEditComponent.element, this.#pointComponent.element);
+    document.addEventListener('keydown', this.#keyDownHandler);
+    this.#mode = MODE.EDITING;
   }
+
+  #replaceEditToPoint() {
+    replace(this.#pointListComponent.element, this.#pointComponent.element, this.#pointEditComponent.element);
+    document.removeEventListener('keydown', this.#keyDownHandler);
+    this.#mode = MODE.DEFAULT;
+  }
+
+  #keyDownHandler = (evt) => {
+    if (evt.key === 'Escape' || evt.key === 'Esc') {
+      evt.preventDefault();
+      this.#replaceEditToPoint();
+    }
+  };
 
   #renderPoint(point){
     const pointPresenter = new PointPresenter(this.#pointListComponent.element, this.#pointListComponent);
-    pointPresenter.init(point);
-    this.#pointPresenter.set(point.id, pointPresenter);
+    pointPresenter.init(point , this.#replacePointToEdit());
+    this.#pointPresenter.set(point.id,);
   }
 }
