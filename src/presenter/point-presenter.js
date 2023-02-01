@@ -1,85 +1,64 @@
-import PointView from '../view/point-view';
-import PointEditView from '../view/point-edit-view';
-import { render } from '../render';
-import { MODE } from '../const';
+import PointView from '../view/point-view.js';
+import PointEditView from '../view/point-edit-view.js';
+import { MODE } from '../const.js';
+import { render } from '../render.js';
 
 export default class PointPresenter {
-  #pointListContainer = null;
-  #pointEditComponent = null;
+  #pointContainer = null;
   #pointComponent = null;
-  #onModeChange = null;
+  #pointEditComponent = null;
+  #pointListComponent = null;
+  #handleModeChange = null;
 
   #point = null;
   #mode = MODE.DEFAULT;
 
-  constructor({pointListContainer, onModeChange}) {
-    this.#pointListContainer = pointListContainer;
-    this.#onModeChange = onModeChange;
+  constructor(pointContainer, pointList) {
+    this.#pointContainer = pointContainer;
+    this.#pointListComponent = pointList;
   }
 
-  init(point) {
+  init(point){
     this.#point = point;
+
     const prevPointComponent = this.#pointComponent;
     const prevPointEditComponent = this.#pointEditComponent;
 
-    this.#pointComponent = new PointView({
-      point: this.#point,
-      onClick: this.#handleEditClick,
-    });
-    this.#pointEditComponent = new PointEditView({
-      point: this.#point,
-      onClick: this.#handleEditClick,
-      onFormSubmit: this.#handleFormSubmit,
-    });
+    this.#pointComponent = new PointView(this.#point);
+    this.#pointEditComponent = new PointEditView(this.#point);
 
     if (prevPointComponent === null || prevPointEditComponent === null) {
-      render(this.#pointComponent.point, this.#pointListContainer);
-      return;
+      render(this.#pointComponent, this.#pointContainer);
     }
-
-    if (this.#mode === MODE.DEFAULT) {
-      this.#point.element.replaceChild(this.#pointComponent.onClick, prevPointComponent);
-    }
-
-    if (this.#mode === MODE.EDITING) {
-      this.#point.element.replaceChild(this.#pointEditComponent.onClick, prevPointEditComponent);
-    }
-    if (this.#mode === MODE.EDITING) {
-      this.#point.element.replaceChild(this.#pointEditComponent.onFormSubmit, prevPointEditComponent);
-    }
-
+    this.#pointComponent.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
+      this.#replacePointToEdit();
+    });
+    this.#pointEditComponent.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
+      this.#replaceEditToPoint();
+    });
+    this.#pointEditComponent.element.querySelector('form').addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      this.#replaceEditToPoint();
+    });
   }
 
   #replacePointToEdit() {
-    this.#point.element.replaceChild(this.#pointEditComponent.element, this.#pointComponent.element);
-    document.addEventListener('keydown', this.#documentKeyDownHandler);
-    this.#onModeChange();
+    this.#pointListComponent.element.replaceChild(this.#pointEditComponent.element, this.#pointComponent.element);
+    document.addEventListener('keydown', this.#keyDownHandler);
     this.#mode = MODE.EDITING;
   }
 
   #replaceEditToPoint() {
-    this.#point.element.replaceChild(this.#pointComponent.element, this.#pointEditComponent.element);
-    document.removeEventListener('keydown', this.#documentKeyDownHandler);
+    this.#pointListComponent.element.replaceChild(this.#pointComponent.element, this.#pointEditComponent.element);
+    document.removeEventListener('keydown', this.#keyDownHandler);
     this.#mode = MODE.DEFAULT;
   }
 
-  #documentKeyDownHandler = (evt) => {
+  #keyDownHandler = (evt) => {
     if (evt.key === 'Escape' || evt.key === 'Esc') {
       evt.preventDefault();
       this.#replaceEditToPoint();
-      document.removeEventListener('keydown', this.#documentKeyDownHandler);
     }
   };
-
-  #handleEditClick = () => {
-    if(this.#mode === MODE.DEFAULT){
-      this.#replacePointToEdit();
-    }
-    this.#replaceEditToPoint();
-  };
-
-  #handleFormSubmit = () => {
-    this.#replaceEditToPoint();
-  };
-
 }
+

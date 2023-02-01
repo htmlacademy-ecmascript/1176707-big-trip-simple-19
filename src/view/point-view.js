@@ -1,5 +1,5 @@
 import {createElement} from '../render.js';
-import {humanizePointDate, humanizePointTime} from '../util.js';
+import {humanizePointDate, humanizePointTime} from '../utils/util.js';
 
 
 function addPoint(point) {
@@ -49,11 +49,8 @@ export default class PointView {
   #point = null;
   #handleClick = null;
 
-  constructor(points) {
-    this.#point = points.point;
-    this.#handleClick = points.onClick;
-
-    this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#editClickHandler);
+  constructor(point) {
+    this.#point = point;
   }
 
   get template() {
@@ -71,9 +68,4 @@ export default class PointView {
   removeElement() {
     this.#element = null;
   }
-
-  #editClickHandler = (evt) => {
-    evt.preventDefault();
-    this.#handleClick();
-  };
 }

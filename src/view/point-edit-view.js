@@ -1,5 +1,5 @@
 import {createElement} from '../render.js';
-import {humanizePointFull} from '../util.js';
+import {humanizePointFull} from '../utils/util.js';
 
 function createPointEditTemplate(point) {
   const {type , destination , offers} = point;
@@ -140,12 +140,7 @@ export default class PointEditView {
   #handleClick = null;
 
   constructor(point) {
-    this.#point = point.point;
-    this.#handleClick = point.onClick;
-    this.#handleFormSubmit = point.onFormSubmit;
-
-    this.element.querySelector('form').addEventListener('submit', this.#formSubmitHandler);
-    this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#handleClick);
+    this.#point = point;
   }
 
   get template() {

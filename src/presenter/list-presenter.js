@@ -7,8 +7,8 @@ export default class ListPresenter {
   #pointListComponent = null;
   #pointModel = null;
 
-  #pointPresenter = new Map();
   #pointList = [];
+  #pointPresenter = new Map();
 
   constructor({pointContainer, pointModel}) {
     this.#pointContainer = pointContainer;
@@ -26,15 +26,13 @@ export default class ListPresenter {
     }
   }
 
-  #handleModeChange = () => {
-    this.#pointPresenter.forEach((presenter) => presenter.resetView());
-  };
+  #moodeChecker(){
+
+  }
 
   #renderPoint(point){
-    const pointPresenter = new PointPresenter({
-      PointListContainer: this.#pointListComponent.element,
-      onModeChange: this.#handleModeChange
-    });
+    const pointPresenter = new PointPresenter(this.#pointListComponent.element, this.#pointListComponent);
     pointPresenter.init(point);
+    this.#pointPresenter.set(point.id, pointPresenter);
   }
 }

@@ -1,4 +1,4 @@
-import {getRandomNumber} from './util';
+import {getRandomNumber} from './utils/util';
 
 const TYPES = ['Taxi', 'Drive', 'Check-in', 'Flight', 'Sightseeing', 'Bus', 'Restaurant', 'Ship', 'Train', 'Transport'];
 const COUNTRIES = [
