@@ -12,6 +12,7 @@ export default class ListPresenter {
   #pointList = [];
   #pointPresenter = new Map();
   #formPresenter = new Map();
+  #formDestroy = null;
 
   #mode = MODE.DEFAULT;
 
@@ -19,6 +20,8 @@ export default class ListPresenter {
     this.#pointContainer = pointContainer;
     this.#pointModel = pointModel;
     this.#pointListComponent = new PointsListView();
+    this.#formDestroy = FormPresenter.destroy;
+
   }
 
   init() {
@@ -32,7 +35,7 @@ export default class ListPresenter {
   }
 
   clearOnChangeMode() {
-    this.#renderPoint.formPresenter.destroy();
+    return this.#formDestroy;
   }
 
   #renderPoint(point){
@@ -40,7 +43,9 @@ export default class ListPresenter {
     const formPresenter = new FormPresenter(this.#pointListComponent.element, point);
 
     const replacePointToEdit = () => {
-      this.#pointListComponent.element.replaceChild(formPresenter.form.element, pointPresenter.pointComponent.element);
+      if(this.#mode === MODE.DEFAULT) {
+        this.#pointListComponent.element.replaceChild(formPresenter.form.element, pointPresenter.pointComponent.element);
+      } this.clearOnChangeMode();
     };
     const replaceEditToPoint = () =>{
       this.#pointListComponent.element.replaceChild(pointPresenter.pointComponent.element, formPresenter.form.element);
@@ -55,6 +60,7 @@ export default class ListPresenter {
 
     pointPresenter.init(point);
     this.#pointPresenter.set(point.id, point);
+    this.#formPresenter.set(point.id, point);
 
     pointPresenter.pointComponent.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
       replacePointToEdit();

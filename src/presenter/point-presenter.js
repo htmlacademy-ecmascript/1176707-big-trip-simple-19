@@ -1,6 +1,5 @@
 import PointView from '../view/point-view.js';
 import { render } from '../render.js';
-import { MODE } from '../const.js';
 
 export default class PointPresenter {
   #pointContainer = null;
@@ -9,7 +8,6 @@ export default class PointPresenter {
   #editComponent = null;
 
   #point = null;
-  #mode = MODE.DEFAULT;
 
   constructor(pointContainer, point, clearOnChangeMode) {
     this.#pointContainer = pointContainer;
@@ -22,10 +20,8 @@ export default class PointPresenter {
     return this.#pointComponent;
   }
 
-  init(){
-    if (this.#mode === MODE.DEFAULT) {
-      render(this.pointComponent, this.#pointContainer);
-    }
+  init() {
+    render(this.pointComponent, this.#pointContainer);
   }
 
 }
