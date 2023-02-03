@@ -106,7 +106,7 @@ const OFFERS = [
     price: getRandomNumber(100)
   }
 ];
-const POINT_AMOUNT = 10;
+const POINT_AMOUNT = 0;
 
 const MODE = {
   DEFAULT: 'DEFAULT',
