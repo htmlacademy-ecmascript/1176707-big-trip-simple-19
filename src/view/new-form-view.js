@@ -7,7 +7,7 @@ function createNewForm() {
 export default class NewFormView {
   getTemplate() {
     return createNewForm();
-  }
+  
 
   getElement() {
     if (!this.element) {
