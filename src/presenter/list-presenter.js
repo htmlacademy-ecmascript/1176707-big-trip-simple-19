@@ -31,7 +31,7 @@ export default class ListPresenter {
 
     if (this.#pointList.every((point) => point.isArchive)) {
       render(new NoPointsView(), this.#pointListComponent.element);
-    } else {
+    } else 
       for (let i = 0; i < this.#pointList.length; i++) {
         this.#renderPoint(this.#pointList[i]);
       }
