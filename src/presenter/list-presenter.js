@@ -12,7 +12,7 @@ export default class ListPresenter {
 
   #pointList = [];
   #pointPresenter = new Map();
-  #formPresenter = new Map();
+  #formPresenter = null;
   #formDestroy = null;
 
   #mode = MODE.DEFAULT;
@@ -23,7 +23,6 @@ export default class ListPresenter {
     this.#pointModel = pointModel;
     this.#pointListComponent = new PointsListView();
     this.#formDestroy = FormPresenter.destroy;
-
   }
 
   init() {
@@ -45,15 +44,17 @@ export default class ListPresenter {
 
   #renderPoint(point){
     const pointPresenter = new PointPresenter(this.#pointListComponent.element, point, this.clearOnChangeMode());
-    const formPresenter = new FormPresenter(this.#pointListComponent.element, point);
+    this.#formPresenter = new FormPresenter(this.#pointListComponent.element, point);
 
     const replacePointToEdit = () => {
       if(this.#mode === MODE.DEFAULT) {
-        this.#pointListComponent.element.replaceChild(formPresenter.form.element, pointPresenter.pointComponent.element);
+        this.#pointListComponent.element.replaceChild(this.#formPresenter.form.element, pointPresenter.pointComponent.element);
       } this.clearOnChangeMode();
     };
     const replaceEditToPoint = () =>{
-      this.#pointListComponent.element.replaceChild(pointPresenter.pointComponent.element, formPresenter.form.element);
+      if(this.#mode === MODE.EDITING) {
+        this.#pointListComponent.element.replaceChild(pointPresenter.pointComponent.element, this.#formPresenter.form.element);
+      } this.clearOnChangeMode();
     };
     const documentKeyDownHandler = (evt) => {
       if (evt.key === 'Escape' || evt.key === 'Esc') {
@@ -66,19 +67,18 @@ export default class ListPresenter {
 
     pointPresenter.init(point);
     this.#pointPresenter.set(point.id, point);
-    this.#formPresenter.set(point.id, point);
 
     pointPresenter.pointComponent.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
       replacePointToEdit();
       document.addEventListener('keydown', documentKeyDownHandler);
       this.#mode = MODE.EDITING;
     });
-    formPresenter.form.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
+    this.#formPresenter.form.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
       replaceEditToPoint();
       document.removeEventListener('keydown', documentKeyDownHandler);
       this.#mode = MODE.DEFAULT;
     });
-    formPresenter.form.element.querySelector('form').addEventListener('submit', (evt) => {
+    this.#formPresenter.form.element.querySelector('form').addEventListener('submit', (evt) => {
       evt.preventDefault();
       replaceEditToPoint();
       document.removeEventListener('keydown', documentKeyDownHandler);
