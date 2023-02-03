@@ -34,8 +34,4 @@ function generateRandomDate(start, end, startHour, endHour) {
   return date;
 }
 
-function replace(domElement, firstElement, secondElement){
-  domElement.replaceChild(firstElement, secondElement);
-}
-
-export {getRandomArrayElement, humanizePointDate, humanizePointTime, getRandomNumber, generateRandomDate, humanizePointFull, replace};
+export {getRandomArrayElement, humanizePointDate, humanizePointTime, getRandomNumber, generateRandomDate, humanizePointFull};

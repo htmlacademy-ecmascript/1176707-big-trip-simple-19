@@ -1,28 +1,32 @@
 import PointView from '../view/point-view.js';
 import { render } from '../render.js';
+import { MODE } from '../const.js';
 
 export default class PointPresenter {
   #pointContainer = null;
-  #replacePointToEdit = null;
+  #pointComponent = null;
+  #clearOnChangeMode = null;
+  #editComponent = null;
 
   #point = null;
+  #mode = MODE.DEFAULT;
 
-  constructor(pointContainer, replacePointToEdit) {
+  constructor(pointContainer, point, clearOnChangeMode) {
     this.#pointContainer = pointContainer;
-    this.#replacePointToEdit = replacePointToEdit;
-  }
-
-  init(point){
     this.#point = point;
-
-    const pointComponent = new PointView(this.#point, this.#handlePointEditClick);
-
-    render(pointComponent, this.#pointContainer);
+    this.#clearOnChangeMode = clearOnChangeMode;
+    this.#pointComponent = new PointView(this.#point);
   }
 
-  #handlePointEditClick = () => {
-    this.#replacePointToEdit();
-  };
+  get pointComponent() {
+    return this.#pointComponent;
+  }
+
+  init(){
+    if (this.#mode === MODE.DEFAULT) {
+      render(this.pointComponent, this.#pointContainer);
+    }
+  }
 
 }
 
