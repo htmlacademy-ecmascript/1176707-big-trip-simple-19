@@ -32,7 +32,7 @@ export default class ListPresenter {
   }
 
   clearOnChangeMode() {
-
+    this.#renderPoint.formPresenter.destroy();
   }
 
   #renderPoint(point){
