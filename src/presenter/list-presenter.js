@@ -55,6 +55,7 @@ export default class ListPresenter {
         evt.preventDefault();
         replaceEditToPoint();
         document.removeEventListener('keydown', documentKeyDownHandler);
+        this.#mode = MODE.DEFAULT;
       }
     };
 
