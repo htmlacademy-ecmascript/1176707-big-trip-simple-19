@@ -10,7 +10,7 @@ function createNoPointsTemplate() {
 export default class NoPointsView {
   #element = null;
 
-  get element() {
+  get element() 
     if (!this.#element) {
       this.#element = createElement(this.template);
     }
