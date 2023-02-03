@@ -1,9 +1,9 @@
 import {createElement} from '../render.js';
-import {humanizePointDate, humanizePointTime} from '../util.js';
+import {humanizePointDate, humanizePointTime} from '../utils/util.js';
 
 
 function addPoint(point) {
-  const {destination, offers, type} = point;
+  const {type , destination , offers} = point;
   const dateStart = point['date_from'];
   const dateEnd = point['date_to'];
   const offersTemplate = offers.map((offer) => `
@@ -45,24 +45,26 @@ function addPoint(point) {
 }
 
 export default class PointView {
+  #element = null;
+  #point = null;
+  #handleClick = null;
 
   constructor(point) {
-    this.point = point;
+    this.#point = point;
   }
 
-  getTemplate() {
-    return addPoint(this.point);
+  get template() {
+    return addPoint(this.#point);
   }
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
+  get element() {
+    if (!this.#element) {
+      this.#element = createElement(this.template);
     }
-
-    return this.element;
+    return this.#element;
   }
 
   removeElement() {
-    this.element = null;
+    this.#element = null;
   }
 }

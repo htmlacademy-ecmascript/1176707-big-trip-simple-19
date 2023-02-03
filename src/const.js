@@ -1,4 +1,4 @@
-import {getRandomNumber} from './util';
+import {getRandomNumber} from './utils/util';
 
 const TYPES = ['Taxi', 'Drive', 'Check-in', 'Flight', 'Sightseeing', 'Bus', 'Restaurant', 'Ship', 'Train', 'Transport'];
 const COUNTRIES = [
@@ -108,4 +108,9 @@ const OFFERS = [
 ];
 const POINT_AMOUNT = 10;
 
-export {TYPES, COUNTRIES, OFFERS, POINT_AMOUNT};
+const MODE = {
+  DEFAULT: 'DEFAULT',
+  EDITING: 'EDITING',
+};
+
+export {TYPES, COUNTRIES, OFFERS, POINT_AMOUNT, MODE};

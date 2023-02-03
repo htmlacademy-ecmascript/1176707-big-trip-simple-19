@@ -1,19 +1,14 @@
 import {createElement} from '../render.js';
 
-function showRoutePoints() {
+function createNoPointsTemplate() {
   return (
-    `<ul class="trip-events__list">  
-      
-    </ul>`
+    `<p class="trip-events__msg">
+        Click New Event to create your first point
+    </p>`
   );
 }
-
-export default class PointsListView {
+export default class NoPointsView {
   #element = null;
-
-  get template() {
-    return showRoutePoints();
-  }
 
   get element() {
     if (!this.#element) {
@@ -21,6 +16,10 @@ export default class PointsListView {
     }
 
     return this.#element;
+  }
+
+  get template() {
+    return createNoPointsTemplate();
   }
 
   removeElement() {

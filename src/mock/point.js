@@ -1,4 +1,4 @@
-import {getRandomArrayElement, getRandomNumber, generateRandomDate} from '../util.js';
+import {getRandomArrayElement, getRandomNumber, generateRandomDate} from '../utils/util';
 import {TYPES, COUNTRIES, OFFERS, POINT_AMOUNT} from '../const.js';
 
 const mockPoints = [

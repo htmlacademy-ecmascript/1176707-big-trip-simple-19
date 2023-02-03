@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 
 const DATE_FORMAT = 'MMM D';
 const TIME_FORMAT = 'HH:mm';
+const FULL_FORMAT = 'DD/MM/YY HH:mm';
 
 function getRandomArrayElement(items) {
   return items[getRandomNumber(items.length - 1)];
@@ -13,6 +14,10 @@ function humanizePointDate(dueDate) {
 
 function humanizePointTime(dueDate) {
   return dueDate ? dayjs(dueDate).format(TIME_FORMAT) : '';
+}
+
+function humanizePointFull(dueDate) {
+  return dueDate ? dayjs(dueDate).format(FULL_FORMAT) : '';
 }
 
 function getRandomNumber(min, max) {
@@ -29,4 +34,4 @@ function generateRandomDate(start, end, startHour, endHour) {
   return date;
 }
 
-export {getRandomArrayElement, humanizePointDate, humanizePointTime, getRandomNumber, generateRandomDate};
+export {getRandomArrayElement, humanizePointDate, humanizePointTime, getRandomNumber, generateRandomDate, humanizePointFull};
