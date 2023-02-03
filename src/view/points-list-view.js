@@ -1,4 +1,4 @@
-import {createElement} from '../render.js';
+import AbstractView from '../framework/view/abstract-view.js';
 
 function showRoutePoints() {
   return (
@@ -8,22 +8,8 @@ function showRoutePoints() {
   );
 }
 
-export default class PointsListView {
-  #element = null;
-
+export default class PointsListView extends AbstractView {
   get template() {
     return showRoutePoints();
-  }
-
-  get element() {
-    if (!this.#element) {
-      this.#element = createElement(this.template);
-    }
-
-    return this.#element;
-  }
-
-  removeElement() {
-    this.#element = null;
   }
 }

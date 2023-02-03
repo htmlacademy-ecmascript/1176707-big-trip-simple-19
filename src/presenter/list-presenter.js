@@ -1,9 +1,7 @@
 import PointsListView from '../view/points-list-view.js';
-import PointPresenter from './point-presenter.js';
-import FormPresenter from './form-presenter.js';
 import NoPointsView from '../view/no-points-view.js';
-import { MODE, POINT_AMOUNT } from '../const.js';
-import { render } from '../render.js';
+import PointPresenter from './point-presenter.js';
+import { render} from '../framework/render.js';
 
 export default class ListPresenter {
   #pointContainer = null;
@@ -12,11 +10,6 @@ export default class ListPresenter {
 
   #pointList = [];
   #pointPresenter = new Map();
-  #formPresenter = new Map();
-  #formDestroy = null;
-
-  #mode = MODE.DEFAULT;
-  #renderPointsCount = POINT_AMOUNT;
 
   constructor({pointContainer, pointModel}) {
     this.#pointContainer = pointContainer;
@@ -37,47 +30,16 @@ export default class ListPresenter {
     }
   }
 
+  #handleModeChange = () => {
+    this.#pointPresenter.forEach((presenter) => presenter.resetView());
+  };
+
   #renderPoint(point){
-    const pointPresenter = new PointPresenter(this.#pointListComponent.element, point);
-    const formPresenter = new FormPresenter(this.#pointListComponent.element, point);
-
-    const replacePointToEdit = () => {
-      if(this.#mode === MODE.DEFAULT) {
-        this.#pointListComponent.element.replaceChild(formPresenter.form.element, pointPresenter.pointComponent.element);
-      }
-    };
-    const replaceEditToPoint = () =>{
-      if(this.#mode === MODE.EDITING) {
-        this.#pointListComponent.element.replaceChild(pointPresenter.pointComponent.element, formPresenter.form.element);
-      }
-    };
-    const documentKeyDownHandler = (evt) => {
-      if (evt.key === 'Escape' || evt.key === 'Esc') {
-        evt.preventDefault();
-        replaceEditToPoint();
-        document.removeEventListener('keydown', documentKeyDownHandler);
-        this.#mode = MODE.DEFAULT;
-      }
-    };
-
+    const pointPresenter = new PointPresenter({
+      pointListComponent: this.#pointListComponent,
+      onModeChange: this.#handleModeChange
+    });
     pointPresenter.init(point);
-    this.#pointPresenter.set(point.id, point);
-
-    pointPresenter.pointComponent.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
-      replacePointToEdit();
-      document.addEventListener('keydown', documentKeyDownHandler);
-      this.#mode = MODE.EDITING;
-    });
-    formPresenter.form.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
-      replaceEditToPoint();
-      document.removeEventListener('keydown', documentKeyDownHandler);
-      this.#mode = MODE.DEFAULT;
-    });
-    formPresenter.form.element.querySelector('form').addEventListener('submit', (evt) => {
-      evt.preventDefault();
-      replaceEditToPoint();
-      document.removeEventListener('keydown', documentKeyDownHandler);
-      this.#mode = MODE.DEFAULT;
-    });
+    this.#pointPresenter.set(point.id, pointPresenter);
   }
 }

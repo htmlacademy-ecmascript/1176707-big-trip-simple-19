@@ -1,5 +1,5 @@
-import {createElement} from '../render.js';
 import {humanizePointFull} from '../utils/util.js';
+import AbstractView from '../framework/view/abstract-view.js';
 
 function createPointEditTemplate(point) {
   const {type , destination , offers} = point;
@@ -133,29 +133,35 @@ function createPointEditTemplate(point) {
   );
 }
 
-export default class PointEditView {
-  #element = null;
+export default class PointEditView extends AbstractView {
   #point = null;
+  #handleEditClick = null;
   #handleFormSubmit = null;
-  #handleClick = null;
 
-  constructor(point) {
+  constructor({point, onEditClick, onFormSubmit}) {
+    super();
     this.#point = point;
+    this.#handleEditClick = onEditClick;
+    this.#handleFormSubmit = onFormSubmit;
+
+    this.element.querySelector('.event__rollup-btn')
+      .addEventListener('click', this.#editClickHandler);
+
+    this.element.querySelector('form')
+      .addEventListener('submit', this.#formSubmitHandler);
   }
 
   get template() {
     return createPointEditTemplate(this.#point);
   }
 
-  get element() {
-    if (!this.#element) {
-      this.#element = createElement(this.template);
-    }
+  #editClickHandler = (evt) => {
+    evt.preventDefault();
+    this.#handleEditClick();
+  };
 
-    return this.#element;
-  }
-
-  removeElement() {
-    this.#element = null;
-  }
+  #formSubmitHandler = (evt) => {
+    evt.preventDefault();
+    this.#handleFormSubmit();
+  };
 }
