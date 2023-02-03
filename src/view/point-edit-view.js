@@ -139,8 +139,18 @@ export default class PointEditView {
   #handleFormSubmit = null;
   #handleClick = null;
 
-  constructor(point) {
+  constructor(point, onEditClick, onSubmit) {
     this.#point = point;
+    this.#handleClick = onEditClick;
+    this.#handleFormSubmit = onSubmit;
+
+    this.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
+      this.#handleClick();
+    });
+    this.element.querySelector('form').addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      this.#handleFormSubmit();
+    });
   }
 
   get template() {
