@@ -32,11 +32,7 @@ export default class ListPresenter {
   }
 
   clearOnChangeMode() {
-    if (this.#pointList === MODE.DEFAULT) {
-      console.log('Mode Default');
-    } else {
-      console.log(this.pointPresenter);
-    }
+
   }
 
   #renderPoint(point){
