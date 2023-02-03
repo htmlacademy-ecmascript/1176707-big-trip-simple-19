@@ -1,7 +1,8 @@
 import PointsListView from '../view/points-list-view.js';
 import PointPresenter from './point-presenter.js';
 import FormPresenter from './form-presenter.js';
-import { MODE } from '../const.js';
+import NoPointsView from '../view/no-points-view.js';
+import { MODE, POINT_AMOUNT } from '../const.js';
 import { render } from '../render.js';
 
 export default class ListPresenter {
@@ -15,6 +16,7 @@ export default class ListPresenter {
   #formDestroy = null;
 
   #mode = MODE.DEFAULT;
+  #renderPointsCount = POINT_AMOUNT;
 
   constructor({pointContainer, pointModel}) {
     this.#pointContainer = pointContainer;
@@ -26,11 +28,14 @@ export default class ListPresenter {
 
   init() {
     this.#pointList = [...this.#pointModel.point];
-
     render(this.#pointListComponent, this.#pointContainer);
 
-    for (let i = 0; i < this.#pointList.length; i++) {
-      this.#renderPoint(this.#pointList[i]);
+    if (this.#pointList.every((point) => point.isArchive)) {
+      render(new NoPointsView(), this.#pointListComponent.element);
+    } else {
+      for (let i = 0; i < this.#pointList.length; i++) {
+        this.#renderPoint(this.#pointList[i]);
+      }
     }
   }
 
