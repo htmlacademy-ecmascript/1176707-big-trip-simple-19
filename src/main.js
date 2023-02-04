@@ -3,7 +3,7 @@ import SortView from './view/sort-view.js';
 import FilterView from './view/filter-view.js';
 import ListPresenter from './presenter/list-presenter.js';
 import PointModel from './model/point-model.js';
-import {render} from './render.js';
+import {render} from './framework/render.js';
 
 const formElement = document.querySelector('.trip-main');
 const headerElement = document.querySelector('.trip-events');

@@ -33,6 +33,6 @@
   },
   "dependencies": {
     "dayjs": "1.11.6",
-    "faker": "^6.6.6"
+    "faker": "5.5.3"
   }
 }
