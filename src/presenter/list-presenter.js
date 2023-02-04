@@ -9,7 +9,7 @@ export default class ListPresenter {
   #pointModel = null;
 
   #pointList = [];
-  #pointPresenter = new Map();
+  #pointPresenter = new Map()
 
   constructor({pointContainer, pointModel}) {
     this.#pointContainer = pointContainer;
