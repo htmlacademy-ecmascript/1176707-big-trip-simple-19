@@ -1,23 +1,6 @@
-import dayjs from 'dayjs';
-
-const DATE_FORMAT = 'MMM D';
-const TIME_FORMAT = 'HH:mm';
-const FULL_FORMAT = 'DD/MM/YY HH:mm';
 
 function getRandomArrayElement(items) {
   return items[getRandomNumber(items.length - 1)];
-}
-
-function humanizePointDate(dueDate) {
-  return dueDate ? dayjs(dueDate).format(DATE_FORMAT) : '';
-}
-
-function humanizePointTime(dueDate) {
-  return dueDate ? dayjs(dueDate).format(TIME_FORMAT) : '';
-}
-
-function humanizePointFull(dueDate) {
-  return dueDate ? dayjs(dueDate).format(FULL_FORMAT) : '';
 }
 
 function getRandomNumber(min, max) {
@@ -38,32 +21,4 @@ function generateRandomDate(start, end, startHour, endHour) {
   return date;
 }
 
-function getWeightForNullDate(dateA, dateB) {
-  if (dateA === null && dateB === null) {
-    return 0;
-  }
-
-  if (dateA === null) {
-    return 1;
-  }
-
-  if (dateB === null) {
-    return -1;
-  }
-
-  return null;
-}
-
-function sortPointUp(pointA, pointB) {
-  const weight = getWeightForNullDate(pointA.dueDate, pointB.dueDate);
-
-  return weight ?? dayjs(pointA.dueDate).diff(dayjs(pointB.dueDate));
-}
-
-function sortPointDown(pointA, pointB) {
-  const weight = getWeightForNullDate(pointA.dueDate, pointB.dueDate);
-
-  return weight ?? dayjs(pointB.dueDate).diff(dayjs(pointA.dueDate));
-}
-
-export {getRandomArrayElement, humanizePointDate, humanizePointTime, getRandomNumber, generateRandomDate, humanizePointFull, sortPointUp, sortPointDown, updateItem};
+export {getRandomNumber, generateRandomDate, getRandomArrayElement, updateItem};

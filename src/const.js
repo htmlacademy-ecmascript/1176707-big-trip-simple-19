@@ -114,9 +114,7 @@ const MODE = {
 };
 
 const SortType = {
-  DATE: 'sort-day',
-  DATE_UP: 'date-up',
-  DATE_DOWN: 'date-down',
+  DAY: 'sort-day',
   PRICE: 'sort-price'
 };
 

@@ -1,4 +1,4 @@
-import {humanizePointFull} from '../utils/util.js';
+import {humanizePointFull} from '../utils/point-utils.js';
 import AbstractView from '../framework/view/abstract-view.js';
 
 function createPointEditTemplate(point) {
