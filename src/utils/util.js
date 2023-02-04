@@ -27,6 +27,10 @@ function getRandomNumber(min, max) {
   return Math.max(min, Math.floor(Math.random() * max));
 }
 
+function updateItem(items, update) {
+  return items.map((item) => item.id === update.id ? update : item);
+}
+
 function generateRandomDate(start, end, startHour, endHour) {
   const date = new Date(+start + Math.random() * (end - start));
   const hour = startHour + Math.random() * (endHour - startHour) | 0;
@@ -34,4 +38,32 @@ function generateRandomDate(start, end, startHour, endHour) {
   return date;
 }
 
-export {getRandomArrayElement, humanizePointDate, humanizePointTime, getRandomNumber, generateRandomDate, humanizePointFull};
+function getWeightForNullDate(dateA, dateB) {
+  if (dateA === null && dateB === null) {
+    return 0;
+  }
+
+  if (dateA === null) {
+    return 1;
+  }
+
+  if (dateB === null) {
+    return -1;
+  }
+
+  return null;
+}
+
+function sortPointUp(pointA, pointB) {
+  const weight = getWeightForNullDate(pointA.dueDate, pointB.dueDate);
+
+  return weight ?? dayjs(pointA.dueDate).diff(dayjs(pointB.dueDate));
+}
+
+function sortPointDown(pointA, pointB) {
+  const weight = getWeightForNullDate(pointA.dueDate, pointB.dueDate);
+
+  return weight ?? dayjs(pointB.dueDate).diff(dayjs(pointA.dueDate));
+}
+
+export {getRandomArrayElement, humanizePointDate, humanizePointTime, getRandomNumber, generateRandomDate, humanizePointFull, sortPointUp, sortPointDown, updateItem};
