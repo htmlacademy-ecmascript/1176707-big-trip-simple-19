@@ -4,9 +4,9 @@ import { SortType } from '../const.js';
 function createSortTemplate() {
   return (
     `<form class="trip-events__trip-sort  trip-sort" action="#" method="get">
-        <div class="trip-sort__item  trip-sort__item--day">
+        <div class="trip-sort__item  trip-sort__item--day" data-sort-type="${SortType.DAY}">
             <input id="sort-day" class="trip-sort__input  visually-hidden" type="radio" name="trip-sort" value="sort-day" checked">
-            <label class="trip-sort__btn" for="${SortType.DAY}">Day</label>
+            <label class="trip-sort__btn" for="sort-day">Day</label>
         </div>
 
         <div class="trip-sort__item  trip-sort__item--event">
@@ -19,9 +19,9 @@ function createSortTemplate() {
             <label class="trip-sort__btn" for="sort-time">Time</label>
         </div>
 
-        <div class="trip-sort__item  trip-sort__item--price">
+        <div class="trip-sort__item  trip-sort__item--price" price-sort-type="${SortType.PRICE}">
             <input id="sort-price" class="trip-sort__input  visually-hidden" type="radio" name="trip-sort" value="sort-price">
-            <label class="trip-sort__btn" for="${SortType.PRICE}">Price</label>
+            <label class="trip-sort__btn" for="sort-price">Price</label>
         </div>
 
         <div class="trip-sort__item  trip-sort__item--offer">
@@ -39,9 +39,9 @@ export default class SortView extends AbstractView {
     super();
     this.#handleSortTypeChange = onSortTypeChange;
 
-    this.element.querySelector('#sort-day')
+    this.element.querySelector('.trip-sort__item--day')
       .addEventListener('click', this.#SortByDayClickHandler);
-    this.element.querySelector('#sort-price')
+    this.element.querySelector('.trip-sort__item--price')
       .addEventListener('click', this.#SortByPriceClickHandler);
   }
 
@@ -50,12 +50,20 @@ export default class SortView extends AbstractView {
   }
 
   #SortByDayClickHandler = (evt) => {
+    if (evt.target.tagName !== 'DIV') {
+      return;
+    }
+
     evt.preventDefault();
-    this.#handleSortTypeChange(evt.target.id.sortType);
+    this.#handleSortTypeChange(evt.target.dataset.sortType);
   };
 
   #SortByPriceClickHandler = (evt) => {
+    if (evt.target.tagName !== 'DIV') {
+      return;
+    }
+
     evt.preventDefault();
-    this.#handleSortTypeChange(evt.target.id.sortType);
+    this.#handleSortTypeChange(evt.target.dataset.sortType);
   };
 }

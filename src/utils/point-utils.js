@@ -32,10 +32,10 @@ function getWeightForNullDate(dateA, dateB) {
   return null;
 }
 
-function sortDay(pointA, pointB) {
+function sortPointUp(pointA, pointB) {
   const weight = getWeightForNullDate(pointA.dateStart, pointB.dateStart);
 
-  return weight ?? dayjs(pointB.dateStart).diff(dayjs(pointA.dateStart));
+  return weight ?? dayjs(pointA.dateStart).diff(dayjs(pointB.dateStart));
 }
 
-export { humanizePointDate, humanizePointTime, humanizePointFull, sortDay };
+export { humanizePointDate, humanizePointTime, humanizePointFull, sortPointUp };

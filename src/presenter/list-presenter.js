@@ -2,7 +2,7 @@ import PointsListView from '../view/points-list-view.js';
 import NoPointsView from '../view/no-points-view.js';
 import PointPresenter from './point-presenter.js';
 import SortView from '../view/sort-view';
-import { sortDay } from '../utils/point-utils.js';
+import { sortPointUp } from '../utils/point-utils.js';
 import { render, RenderPosition} from '../framework/render.js';
 import { SortType } from '../const.js';
 
@@ -11,9 +11,9 @@ export default class ListPresenter {
   #pointListComponent = null;
   #pointModel = null;
   #sortComponent = null;
-  #currentSortType = SortType.DAY;
+  #currentSortType = SortType.DEFAULT;
 
-  #sourcedListPoint = [];
+  #sourcedListPoints = [];
   #pointList = [];
   #pointPresenter = new Map();
 
@@ -25,7 +25,7 @@ export default class ListPresenter {
 
   init() {
     this.#pointList = [...this.#pointModel.point];
-    this.#sourcedListPoint = [...this.#pointModel.point];
+    this.#sourcedListPoints = [...this.#pointModel.point];
 
     this.#renderSort();
     this.#renderPointList();
@@ -46,23 +46,16 @@ export default class ListPresenter {
     this.#renderPointList();
   };
 
-  #renderPoint(point){
-    const pointPresenter = new PointPresenter({
-      pointListComponent: this.#pointListComponent,
-      onModeChange: this.#handleModeChange
-    });
-    pointPresenter.init(point);
-    this.#pointPresenter.set(point.id, pointPresenter);
-  }
-
   #sortPoints(sortType) {
-    switch(sortType) {
+    switch (sortType) {
       case SortType.DAY:
-        this.#pointList.sort(sortDay);
+        this.#pointList.sort(sortPointUp);
         break;
       case SortType.PRICE:
         this.#pointList.sort((prev, next) => prev.price - next.price);
         break;
+      default:
+        this.#pointList = [...this.#sourcedListPoints];
     }
 
     this.#currentSortType = sortType;
@@ -76,6 +69,14 @@ export default class ListPresenter {
     render(this.#sortComponent, this.#pointListComponent.element, RenderPosition.AFTERBEGIN);
   }
 
+  #renderPoint(point){
+    const pointPresenter = new PointPresenter({
+      pointListComponent: this.#pointListComponent,
+      onModeChange: this.#handleModeChange
+    });
+    pointPresenter.init(point);
+    this.#pointPresenter.set(point.id, pointPresenter);
+  }
 
   #renderPointList() {
     render(this.#pointListComponent, this.#pointContainer);

@@ -114,6 +114,7 @@ const MODE = {
 };
 
 const SortType = {
+  DEFAULT: 'default',
   DAY: 'sort-day',
   PRICE: 'sort-price'
 };
