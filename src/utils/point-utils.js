@@ -16,26 +16,4 @@ function humanizePointFull(dueDate) {
   return dueDate ? dayjs(dueDate).format(FULL_FORMAT) : '';
 }
 
-function getWeightForNullDate(dateA, dateB) {
-  if (dateA === null && dateB === null) {
-    return 0;
-  }
-
-  if (dateA === null) {
-    return 1;
-  }
-
-  if (dateB === null) {
-    return -1;
-  }
-
-  return null;
-}
-
-function sortPointUp(pointA, pointB) {
-  const weight = getWeightForNullDate(pointA.dateStart, pointB.dateStart);
-
-  return weight ?? dayjs(pointA.dateStart).diff(dayjs(pointB.dateStart));
-}
-
-export { humanizePointDate, humanizePointTime, humanizePointFull, sortPointUp };
+export { humanizePointDate, humanizePointTime, humanizePointFull };

@@ -2,7 +2,6 @@ import PointsListView from '../view/points-list-view.js';
 import NoPointsView from '../view/no-points-view.js';
 import PointPresenter from './point-presenter.js';
 import SortView from '../view/sort-view';
-import { sortPointUp } from '../utils/point-utils.js';
 import { render, RenderPosition} from '../framework/render.js';
 import { SortType } from '../const.js';
 
@@ -28,7 +27,6 @@ export default class ListPresenter {
     this.#sourcedListPoints = [...this.#pointModel.point];
 
     this.#renderSort();
-    this.#renderPointList();
   }
 
 
@@ -49,13 +47,27 @@ export default class ListPresenter {
   #sortPoints(sortType) {
     switch (sortType) {
       case SortType.DAY:
-        this.#pointList.sort(sortPointUp);
+        this.#pointList.sort((prev, next) => {
+          if(new Date(prev.date_from) > new Date(next.date_from)) {
+            return -1;
+          }
+          if(new Date(prev.date_from) < new Date(next.date_from)) {
+            return 1;
+          }
+          return 0;
+        });
         break;
       case SortType.PRICE:
-        this.#pointList.sort((prev, next) => prev.price - next.price);
+        this.#pointList.sort((prev, next) => {
+          if(prev.base_price > next.base_price) {
+            return -1;
+          }
+          if(prev.base_price < next.base_price) {
+            return 1;
+          }
+          return 0;
+        });
         break;
-      default:
-        this.#pointList = [...this.#sourcedListPoints];
     }
 
     this.#currentSortType = sortType;
@@ -67,6 +79,7 @@ export default class ListPresenter {
     });
 
     render(this.#sortComponent, this.#pointListComponent.element, RenderPosition.AFTERBEGIN);
+    this.#renderPointList();
   }
 
   #renderPoint(point){
@@ -83,6 +96,7 @@ export default class ListPresenter {
 
     if (this.#pointList.every((point) => point.isArchive)) {
       render(new NoPointsView(), this.#pointListComponent.element);
+      return;
     }
 
     for (let i = 0; i < this.#pointList.length; i++) {
