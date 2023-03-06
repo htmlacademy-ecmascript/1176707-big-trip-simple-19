@@ -2,8 +2,7 @@ import AbstractView from '../framework/view/abstract-view.js';
 
 function showRoutePoints() {
   return (
-    `<ul class="trip-events__list">  
-      
+    `<ul class="trip-events__list">
     </ul>`
   );
 }

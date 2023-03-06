@@ -113,4 +113,10 @@ const MODE = {
   EDITING: 'EDITING',
 };
 
-export {TYPES, COUNTRIES, OFFERS, POINT_AMOUNT, MODE};
+const SortType = {
+  DEFAULT: 'default',
+  DAY: 'sort-day',
+  PRICE: 'sort-price'
+};
+
+export {TYPES, COUNTRIES, OFFERS, POINT_AMOUNT, MODE, SortType};
